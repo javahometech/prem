@@ -1,0 +1,31 @@
+applications:
+  - name: mfxr-profiletoken-prod
+    buildpacks:
+      - java_current
+    memory: 2GB
+    instances: 6
+    env:
+      SPRING_PROFILES_ACTIVE: pcf-prod-wtc
+      SPRING_CLOUD_CONFIG_FAIL-FAST: true
+      SPRING_CLOUD_CONFIG_RETRY_INITIAL-INTERVAL: 1000
+      SPRING_CLOUD_CONFIG_RETRY_MAX-INTERVAL: 2000
+      SPRING_CLOUD_CONFIG_RETRY_MAX-INTERVAL: 100
+      SPRING_CLOUD_CONFIG_LABEL: RB-ConfigOct19DL
+      APPDYNAMICS_AGENT_APPLICATION_NAME: mfxr-profiletoken-3535896
+      APPDYNAMICS_AGENT_TIER_NAME: profiletokenService-3535896-prod-wtc
+      JAVA_OPTS: 
+        -Dconfig.uri=https://mfxrconfigurationserver-prod.app.wtccf2.paas.fedex.com
+        -Deureka.serviceurl.defaultzone=https://registry-prod.app.wtccf2.paas.fedex.com/regs/eureka/
+        -Dappdynamics.http.proxyHost=internet.proxy.fedex.com 
+        -Dappdynamics.http.proxyPort=3128
+        -DAPI_PROVIDER_HOST=fclapi-wap.zmd.fedex.com
+        -DAPI_PROVIDER_PORT=7762
+        -DWISE_RR=wise.zmd.fedex.com
+        -Djstaterclient.wiseserver.port=787
+        -DWISE_CONN_TIMEOUT=3000
+        -DSTATER_RW_TIMEOUT=3000
+        -DSSO_CSM=-vip
+        -DWISE_RETRY=1
+        -DMAX_CONN_COUNT=22
+        -DFCL_SERVER_CONN_TIMEOUT=60000
+        -DFCL_SERVER_READ_TIMEOUT=60000
